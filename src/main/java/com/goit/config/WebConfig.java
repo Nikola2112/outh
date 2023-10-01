@@ -56,12 +56,12 @@ public class WebConfig {
             "/swagger-ui.html"};
 
 
-    
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests(authorize -> authorize
-                        .antMatchers(PUBLIC_PATHS).permitAll()
+                        . requestMatchers(PUBLIC_PATHS).permitAll()
                         .anyRequest().hasAuthority("SCOPE_ROLE_ADMIN")
                 )
                 .csrf().disable()
